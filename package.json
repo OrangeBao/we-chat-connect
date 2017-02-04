@@ -1,0 +1,18 @@
+{
+  "name": "we-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yhbao@amarsoft.com",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.14.1",
+    "sha1": "^1.1.1",
+    "xml2js": "^0.4.17"
+  }
+}
