@@ -9,3 +9,6 @@ $ npm install                                         # Install project dependen
 $ ssh -R 3000:localhost:3000 root@[your server] -N    # open ssh tunnel
 ```
 
+# Config for nginx
+
+[click me](https://zhuanlan.zhihu.com/p/25071391)
