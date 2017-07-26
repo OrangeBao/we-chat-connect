@@ -9,9 +9,7 @@ class ProductionController {
   @controllerHandler('/getAllProductions')
   getAllProductions (req, res) {
     productionDao.queryAll().then(data => {
-      res.json({
-        res: data
-      });
+      res.json(data);
     });
   }
 
