@@ -9,10 +9,12 @@ module.exports = {
   connect: connect,
   receiveMsg: receiveMsg,
   autoExecute: function(req, res) {
-    console.log(req.url);
-    console.log(mapManager.getHandler(req.url));
-    if (mapManager.getHandler(req.url)) {
-      mapManager.getHandler(req.url)(req, res);
+    console.log('path: ', req.path);
+    console.log('query: ', req.query);
+
+    // console.log(mapManager.getHandler(req.path));
+    if (mapManager.getHandler(req.path)) {
+      mapManager.getHandler(req.path)(req, res);
     } else {
       res.json({
         res: 'no handler match'
