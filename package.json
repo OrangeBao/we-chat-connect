@@ -4,15 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "testCtrl": "babel-node __test__/ctlTest.js",
+    "start": "babel-node index.js"
   },
   "author": "yhbao@amarsoft.com",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "crypto": "0.0.3",
     "crypto-js": "^3.1.9-1",
     "express": "^4.14.1",
+    "mysql": "^2.13.0",
     "sha1": "^1.1.1",
     "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-plugin-syntax-decorators": "^6.13.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2016": "^6.24.1"
   }
 }
