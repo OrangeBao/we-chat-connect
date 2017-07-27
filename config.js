@@ -3,7 +3,7 @@ module.exports = {
   appId: 'wx18f61c53a6240c2f',
   appSecret: '9db20e88660581e51a65158227c24e0f',
   mysqlOption: {
-    connectionLimit : 2,
+    connectionLimit : 10,
     host            : 'localhost',
     port            : 3306,
     user            : 'root',
