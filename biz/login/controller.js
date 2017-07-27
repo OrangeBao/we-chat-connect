@@ -8,7 +8,7 @@ class LoginController {
 
   @controllerHandler('/onLogin')
   onLogin (req, res) {
-    httpsRequest.send(req.query.code).then(response => res.json(response))
+    return httpsRequest.send(req.query.code).then(response => res.json(response));
   }
 
 }

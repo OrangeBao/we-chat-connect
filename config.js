@@ -1,8 +1,3 @@
-/**
- * Created by baoyinghai on 2/3/17.
- */
-
-
 module.exports = {
   token: 'weixinCourse',
   appId: 'wx18f61c53a6240c2f',

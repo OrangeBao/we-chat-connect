@@ -8,7 +8,7 @@ class ProductionController {
 
   @controllerHandler('/getAllProductions')
   getAllProductions (req, res) {
-    productionDao.queryAll().then(data => {
+    return productionDao.queryAll().then(data => {
       if (data) {
         return data.map(stringUtil);
       }

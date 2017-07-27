@@ -9,16 +9,25 @@ module.exports = {
   connect: connect,
   receiveMsg: receiveMsg,
   autoExecute: function(req, res) {
-    console.log('path: ', req.path);
-    console.log('query: ', req.query);
-    console.log('body: ', req.body);
-
-    // console.log(mapManager.getHandler(req.path));
     if (mapManager.getHandler(req.path)) {
-      mapManager.getHandler(req.path)(req, res);
+      const handler = mapManager.getHandler(req.path)(req, res);
+      if (!handler) {
+        res.json({
+          yogCode: 301,
+          yogMsg: 'must return a promise'
+        });
+      } else {
+        handler.catch(e => {
+          res.json({
+            yogCode: 302,
+            yogMsg: e
+          });
+        })
+      }
     } else {
       res.json({
-        res: 'no handler match'
+        yogCode: 300,
+        yogMsg: 'not match handler'
       });
     }
   }

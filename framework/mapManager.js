@@ -5,11 +5,11 @@ const MAPOBJ = {};
 
 function addController(url, ctl) {
   MAPOBJ[url] = ctl;
-  console.log(MAPOBJ);
+  // console.log(MAPOBJ);
 }
 
 function getHandler(url) {
-  console.log(MAPOBJ);
+  // console.log(MAPOBJ);
   return  MAPOBJ[url];
 }
 

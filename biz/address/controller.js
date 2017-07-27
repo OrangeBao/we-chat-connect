@@ -6,7 +6,7 @@ class AddressController {
 
   @controllerHandler('/getAllAddress')
   getUserAddress (req, res) {
-    addressDao.queryAddressById(req.query.openId || req.body.openId).then(data => {
+    return addressDao.queryAddressById(req.query.openId || req.body.openId).then(data => {
       if (data) {
         return data.map(stringUtil);
       }
@@ -23,7 +23,7 @@ class AddressController {
     const name = req.query.name || req.body.name;
     const sex = req.query.sex || req.body.sex;
     const phone = req.query.phone || req.body.phone;
-    addressDao.updateAddressById(addressId, address, name, sex, phone).then(data => {
+    return addressDao.updateAddressById(addressId, address, name, sex, phone).then(data => {
       res.end();
     });
   }
@@ -35,7 +35,7 @@ class AddressController {
     const name = req.query.name || req.body.name;
     const sex = req.query.sex || req.body.sex;
     const phone = req.query.phone || req.body.phone;
-    addressDao.insertAddress(openId, address, name, sex, phone).then(data => {
+    return addressDao.insertAddress(openId, address, name, sex, phone).then(data => {
       res.end();
     })
   }

@@ -7,23 +7,23 @@ class OrdersController {
   @controllerHandler('/getAllOrders')
   getAllOrders(req, res) {
     const openId = req.query.openId || req.body.openId;
-    orderDao.queryOrdersById(openId).then(data => {
+    return orderDao.queryOrdersById(openId).then(data => {
       if (data) {
         return data.map(stringUtil);
       }
       return data;
     }).then(data => {
       res.json(data);
-    }).catch(e => console.log(e));
+    });
   }
 
   @controllerHandler('/changeOrderState')
   updateOrderStatue(req, res) {
     const orderId = req.query.orderId || req.body.orderId;
     const statue = req.query.statue || req.body.statue;
-    orderDao.updateOrderById(orderId, statue).then(data => {
+    return orderDao.updateOrderById(orderId, statue).then(data => {
       res.end();
-    }).catch(e => console.log(e))
+    });
   }
 
   @controllerHandler('/addOrder')
@@ -34,9 +34,9 @@ class OrdersController {
     const money = req.query.money || req.body.money;
     const statue = req.query.statue || req.body.statue;
     const addressId = req.query.addressId || req.body.addressId;
-    orderDao.insertOrder(openId, desc, count, money, statue, addressId).then(data => {
+    return orderDao.insertOrder(openId, desc, count, money, statue, addressId).then(data => {
       res.end();
-    }).catch(e => console.log(e));
+    });
   }
 
 }
