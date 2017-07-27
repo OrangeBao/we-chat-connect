@@ -1,11 +1,17 @@
 var { controllerHandler } = require('../../framework/decorators');
 var addressDao = require('./addressDao');
+var stringUtil = require('../../utils/mapUnderscoreToCamelCase');
 
 class AddressController {
 
   @controllerHandler('/getAllAddress')
   getUserAddress (req, res) {
     addressDao.queryAddressById(req.query.openId || req.body.openId).then(data => {
+      if (data) {
+        return data.map(stringUtil);
+      }
+      return data;
+    }).then(data => {
       res.json(data);
     });
   }

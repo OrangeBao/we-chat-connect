@@ -1,5 +1,6 @@
 var { controllerHandler } = require('../../framework/decorators');
 var orderDao = require('./orderDao');
+var stringUtil = require('../../utils/mapUnderscoreToCamelCase');
 
 class OrdersController {
 
@@ -7,6 +8,11 @@ class OrdersController {
   getAllOrders(req, res) {
     const openId = req.query.openId || req.body.openId;
     orderDao.queryOrdersById(openId).then(data => {
+      if (data) {
+        return data.map(stringUtil);
+      }
+      return data;
+    }).then(data => {
       res.json(data);
     }).catch(e => console.log(e));
   }
