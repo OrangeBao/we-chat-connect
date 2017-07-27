@@ -6,10 +6,15 @@ module.exports = {
   queryAll: function() {
     return new Promise((resolve, reject) => {
       pool.getConnection(function(err, connection) {
-        connection.query('SELECT * FROM production', function (error, results, fields) {
-          if (error) reject(error);
-          resolve(results);
-        });
+        if (err) {
+          reject(err);
+        } else {
+          connection.query('SELECT * FROM production', function (error, results, fields) {
+            connection.release();
+            if (error) reject(error);
+            resolve(results);
+          });
+        }
       });
     });
   }

@@ -12,3 +12,7 @@ $ ssh -R 3000:localhost:3000 root@[your server] -N    # open ssh tunnel
 # Config for nginx
 
 [click me](https://zhuanlan.zhihu.com/p/25071391)
+
+```bash
+pm2 start --interpreter babel-node index.js
+```
