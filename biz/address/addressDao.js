@@ -6,7 +6,7 @@ module.exports = {
   queryAddressById: function(openId) {
     return new Promise((resolve, reject) => {
       pool.getConnection(function(err, connection) {
-        connection.query('SELECT b.address_id, b.address, b.name, b.sex, b.phone FROM u_a_relative a inner join address b on a.address_id = b.address_id where open_id =' + openId, function (error, results, fields) {
+        connection.query('SELECT b.address_id, b.address, b.name, b.sex, b.phone FROM u_a_relative a inner join address b on a.address_id = b.address_id where open_id = ?' , [openId], function (error, results, fields) {
           if (error) reject(error);
           resolve(results);
         });
