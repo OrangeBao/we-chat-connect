@@ -11,6 +11,7 @@ module.exports = {
   autoExecute: function(req, res) {
     console.log('path: ', req.path);
     console.log('query: ', req.query);
+    console.log('body: ', req.body);
 
     // console.log(mapManager.getHandler(req.path));
     if (mapManager.getHandler(req.path)) {

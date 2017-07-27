@@ -2,7 +2,7 @@
  * Created by baoyinghai on 7/26/17.
  */
 var { controllerHandler } = require('../../framework/decorators');
-var productionDao = require('../../dao/productionDao');
+var productionDao = require('./productionDao');
 
 class ProductionController {
 

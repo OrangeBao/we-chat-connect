@@ -9,7 +9,7 @@
     "start": "babel-node index.js",
     "develop": "babel-node index.js dev"
   },
-  "author": "yhbao@amarsoft.com",
+  "author": "orgbao@163.com",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",

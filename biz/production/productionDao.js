@@ -1,7 +1,7 @@
 /**
  * Created by baoyinghai on 7/26/17.
  */
-const pool = require('../cache/mysql');
+const pool = require('../../cache/mysql');
 module.exports = {
   queryAll: function() {
     return new Promise((resolve, reject) => {
