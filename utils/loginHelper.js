@@ -1,4 +1,5 @@
 const https = require('https');
+const config = require('../config');
 
 const options = {
   hostname: 'api.weixin.qq.com',
@@ -7,7 +8,7 @@ const options = {
 };
 
 function createPath(jsCode) {
-  return '/sns/jscode2session?appid=wx18f61c53a6240c2f&secre…a81&js_code=' + jsCode + '&grant_type=authorization_code';
+  return '/sns/jscode2session?appid=' + config.appId + '&secret=' + config.appSecret + '&js_code=' + jsCode + '&grant_type=authorization_code';
 }
 
 module.exports = {
@@ -16,7 +17,8 @@ module.exports = {
       options.path = createPath(jsCode);
       const req = https.request(options, (res) => {
         res.on('data', (d) => {
-          resolve(d);
+          console.log('login success: ', d.toString());
+          resolve(d.toString());
         });
       });
       req.on('error', (e) => {

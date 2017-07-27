@@ -1,12 +1,7 @@
 var mysql = require('mysql');
-var pool  = mysql.createPool({
-  connectionLimit : 10,
-  host            : 'localhost',
-  port            : 3306,
-  user            : 'root',
-  // password        : 'secret',
-  database        : 'yoghourt'
-});
+const config = require('../config');
+console.log(config.mysqlOption);
+var pool  = mysql.createPool(config.mysqlOption);
 
 
 // pool.getConnection(function(err, connection) {
