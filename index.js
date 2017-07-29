@@ -8,7 +8,7 @@ var biz = require('./biz');
 
 var app = express();
 
-app.use(bodyParder.text({ type: 'text/xml' }));
+app.use(bodyParder.json());
 app.use(express.static('./static'));
 
 app.all('/test', function(req, res) {
@@ -19,7 +19,8 @@ app.all('/test', function(req, res) {
 
 // app.get('/connect', rpc.connect);
 // app.post('/connect', rpc.receiveMsg);
-app.all('/*', rpc.autoExecute);
+app.get('/*', rpc.autoExecute);
+app.post('/*', rpc.autoExecute);
 
 var server = app.listen(3000, function () {
   var host = server.address().address;

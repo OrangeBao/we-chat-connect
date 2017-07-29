@@ -4,6 +4,18 @@ var stringUtil = require('../../utils/mapUnderscoreToCamelCase');
 
 class OrdersController {
 
+  @controllerHandler('/getAllOrdersByTime')
+  getAllOrdersOrderByCreateTime(req, res) {
+    return orderDao.queryAllOrders().then(data => {
+      if (data) {
+        return data.map(stringUtil);
+      }
+      return data;
+    }).then(data => {
+      res.json(data);
+    });
+  }
+
   @controllerHandler('/getAllOrders')
   getAllOrders(req, res) {
     const openId = req.query.openId || req.body.openId;

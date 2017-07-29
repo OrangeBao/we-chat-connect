@@ -3,6 +3,24 @@
  */
 const pool = require('../../cache/mysql');
 module.exports = {
+  queryAllOrders: function() {
+    return new Promise((resolve, reject) => {
+      pool.getConnection(function(err, connection) {
+        if (err) {
+          reject(err);
+        } else {
+          connection.query('SELECT b.order_id, b.address_id, b.desc, b.count, b.money, b.statue, b.create_time, c.address, c.name, c.sex, c.phone FROM u_o_relative a inner join yoghourt.order b on a.order_id = b.order_id inner join address c on c.address_id = b.address_id order by b.create_time', function (error, results, fields) {
+            connection.release();
+            if (error) {
+              reject(error);
+            } else {
+              resolve(results);
+            }
+          });
+        }
+      });
+    });
+  },
   queryOrdersById: function(openId) {
     return new Promise((resolve, reject) => {
       pool.getConnection(function(err, connection) {
