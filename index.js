@@ -11,12 +11,6 @@ var app = express();
 app.use(bodyParder.json());
 app.use(express.static('./static'));
 
-app.all('/test', function(req, res) {
-  res.json({
-    k: 'hello'
-  });
-});
-
 // app.get('/connect', rpc.connect);
 // app.post('/connect', rpc.receiveMsg);
 app.get('/*', rpc.autoExecute);
