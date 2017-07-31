@@ -6,6 +6,21 @@ var productionDao = require('./productionDao');
 var stringUtil = require('../../utils/mapUnderscoreToCamelCase');
 class ProductionController {
 
+  @controllerHandler('/getAllProductionsByPage')
+  getAllProductionsByPage (req, res) {
+    const currentPage = req.query.currentPage || req.body.currentPage || 0;
+    const pageSize = req.query.pageSize || req.body.pageSize;
+    return productionDao.queryAllByPage(currentPage, pageSize).then(page => {
+      const {data, count} = page;
+      if (data) {
+        page.data = data.map(stringUtil);
+      }
+      return page;
+    }).then(data => {
+      res.json(data);
+    });
+  }
+
   @controllerHandler('/getAllProductions')
   getAllProductions (req, res) {
     return productionDao.queryAll().then(data => {

@@ -3,6 +3,35 @@
  */
 const pool = require('../../cache/mysql');
 module.exports = {
+  queryAllByPage: function(currentPage, pageSize) {
+    return new Promise((resolve, reject) => {
+      pool.getConnection(function(err, connection) {
+        if (err) {
+          reject(err);
+        } else {
+          connection.query('SELECT * FROM production limit ?,?', [currentPage * pageSize, pageSize], function (error, data, fields) {
+            if (error) {
+              connection.release();
+              reject(error);
+            } else {
+              connection.query('SELECT count(*) as total FROM production', function(error, count, fields) {
+                connection.release();
+                if (error) {
+                  reject(error);
+                } else {
+                  resolve({
+                    data: data,
+                    count: count[0].total
+                  });
+                }
+              });
+
+            }
+          });
+        }
+      });
+    });
+  },
   queryAll: function() {
     return new Promise((resolve, reject) => {
       pool.getConnection(function(err, connection) {

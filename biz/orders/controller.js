@@ -16,6 +16,21 @@ class OrdersController {
     });
   }
 
+  @controllerHandler('/getAllOrdersByTimeAndPage')
+  getAllOrdersOrderByCreateTimeAndPage(req, res) {
+    const page = req.query.currentPage || req.body.currentPage;
+    const pageSize = req.query.pageSize || req.body.pageSize;
+    return orderDao.queryAllOrdersByPage(page, pageSize).then(page => {
+      const {data, count} = page;
+      if (data) {
+        page.data = data.map(stringUtil);
+      }
+      return page;
+    }).then(data => {
+      res.json(data);
+    });
+  }
+
   @controllerHandler('/getAllOrders')
   getAllOrders(req, res) {
     const openId = req.query.openId || req.body.openId;
@@ -34,7 +49,7 @@ class OrdersController {
     const orderId = req.query.orderId || req.body.orderId;
     const statue = req.query.statue || req.body.statue;
     return orderDao.updateOrderById(orderId, statue).then(data => {
-      res.end();
+      res.json({});
     });
   }
 

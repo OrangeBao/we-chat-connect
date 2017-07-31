@@ -15,6 +15,7 @@ class LoginController {
   managerLogin(req, res) {
     const userName = req.body.userName;
     const userPwd = req.body.password;
+    console.log('hie login');
     return new Promise((resolve, reject) => {
       if (userName !== 'manager') {
         resolve({code: 0});
